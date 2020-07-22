@@ -9,7 +9,7 @@ const tabBarHeight = 60;
 
 export const Toast: React.FC = () => {
   const insets = useSafeAreaInsets();
-  const { toastSettings, hideToast } = useToast();
+  const { toastConfig, hideToast } = useToast();
   const opacity = React.useRef(new Animated.Value(0)).current;
 
   const fadeIn = React.useCallback(() => {
@@ -31,21 +31,21 @@ export const Toast: React.FC = () => {
   }, [opacity, hideToast]);
 
   React.useEffect(() => {
-    if (!toastSettings) {
+    if (!toastConfig) {
       return;
     }
 
     fadeIn();
-    const timer = setTimeout(fadeOut, toastSettings.duration);
+    const timer = setTimeout(fadeOut, toastConfig.duration);
 
     return () => clearTimeout(timer);
-  }, [toastSettings, fadeIn, fadeOut]);
+  }, [toastConfig, fadeIn, fadeOut]);
 
-  if (!toastSettings) {
+  if (!toastConfig) {
     return null;
   }
 
-  const { type, message } = toastSettings;
+  const { type, message } = toastConfig;
 
   let backgroundColor;
   switch (type) {

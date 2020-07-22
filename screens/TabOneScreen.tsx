@@ -13,13 +13,22 @@ export default function TabOneScreen() {
     <View style={styles.container}>
       <EditScreenInfo />
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.3)" />
-      <TouchableOpacity onPress={() => showToast(ToastType.Info, 'Info toast')} style={styles.link}>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        onPress={() => showToast(ToastType.Info, 'Info toast')}
+        style={styles.link}>
         <Text style={[styles.linkText, styles.info]}>Show info toast</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => showToast(ToastType.Error, 'Error toast')} style={styles.link}>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        onPress={() => showToast(ToastType.Error, 'Error toast')}
+        style={styles.link}>
         <Text style={[styles.linkText, styles.info]}>Show error toast</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => showToast(ToastType.Success, 'Success toast')} style={styles.link}>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        onPress={() => showToast(ToastType.Success, 'Success toast')}
+        style={styles.link}>
         <Text style={[styles.linkText, styles.info]}>Show success toast</Text>
       </TouchableOpacity>
     </View>

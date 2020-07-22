@@ -30,7 +30,7 @@ export default function EditScreenInfo() {
 
 function handleHelpPress() {
   WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
+    'https://medium.com/@ghertault/creating-a-simple-toast-module-for-your-react-native-app-using-context-hooks-and-typescript-b3237d5e4fc4'
   );
 }
 

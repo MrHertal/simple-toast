@@ -1,37 +1,45 @@
 import * as React from "react";
 
+// Defines the three kinds of message that are displayed
 export enum ToastType {
   Info = "INFO",
   Error = "ERROR",
   Success = "SUCCESS",
 }
 
-type ToastSettingsType = { type: ToastType; message: string; duration: number };
+// Defines the parameters required to display the toast
+type ToastConfigType = { type: ToastType; message: string; duration: number };
 
+// The toast context exposes this object throughout the app
 type ToastContextType = {
-  toastSettings: ToastSettingsType | null;
+  toastConfig: ToastConfigType | null;
   showToast: (type: ToastType, message: string, duration?: number) => void;
   hideToast: () => void;
 };
 
+// Creates the toast context
 export const ToastContext = React.createContext<ToastContextType | null>(null);
 
 export const ToastProvider: React.FC = ({ children }) => {
+  // Calls setToastConfig in order to control the toast
+  // toastConfig is null by default so the toast is hidden
   const [
-    toastSettings,
-    setToastSettings,
-  ] = React.useState<ToastSettingsType | null>(null);
+    toastConfig,
+    setToastConfig,
+  ] = React.useState<ToastConfigType | null>(null);
 
   function showToast(type: ToastType, message: string, duration = 4000) {
-    setToastSettings({ type, message, duration });
+    // Calls setToastConfig to show the toast
+    setToastConfig({ type, message, duration });
   }
 
   function hideToast() {
-    setToastSettings(null);
+    // Sets toast config to null in order to hide the toast
+    setToastConfig(null);
   }
 
   return (
-    <ToastContext.Provider value={{ toastSettings, showToast, hideToast }}>
+    <ToastContext.Provider value={{ toastConfig, showToast, hideToast }}>
       {children}
     </ToastContext.Provider>
   );
